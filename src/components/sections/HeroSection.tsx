@@ -1,7 +1,13 @@
+import { lazy, Suspense } from 'react';
 import type { Profile } from '../../lib/supabase';
 import FadeIn from '../FadeIn';
 import Magnet from '../Magnet';
 import ContactButton from '../ContactButton';
+
+// Lazy-loaded: the three.js/react-three-fiber chunk is sizeable and purely
+// decorative, so it downloads after the text/photo have already painted
+// instead of delaying first contentful paint.
+const HeroScene = lazy(() => import('../HeroScene'));
 
 interface Props {
   profile: Profile | null;
@@ -25,7 +31,13 @@ export default function HeroSection({ profile }: Props) {
   const headingMaxRem = Math.max(3.5, 7.5 - nameLength * 0.12);
 
   return (
-    <section className="h-screen flex flex-col" style={{ overflowX: 'clip' }}>
+    <section className="relative isolate h-screen flex flex-col" style={{ overflowX: 'clip' }}>
+      <div className="absolute inset-0 -z-10">
+        <Suspense fallback={null}>
+          <HeroScene />
+        </Suspense>
+      </div>
+
       <FadeIn delay={0} y={-20} as="nav" className="flex justify-between px-6 md:px-10 pt-6 md:pt-8">
         {NAV_LINKS.map((link) => (
           <a
