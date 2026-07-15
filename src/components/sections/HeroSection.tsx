@@ -43,7 +43,7 @@ export default function HeroSection({ profile }: Props) {
           <a
             key={link.href}
             href={link.href}
-            className="text-[#D7E2EA] font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] transition-opacity duration-200 hover:opacity-70"
+            className="text-mist font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] transition-opacity duration-200 hover:opacity-70"
           >
             {link.label}
           </a>
@@ -68,7 +68,7 @@ export default function HeroSection({ profile }: Props) {
               {profile?.avatar_url ? (
                 <img src={profile.avatar_url} alt={profile.full_name} className="w-full h-auto select-none" draggable={false} />
               ) : (
-                <div className="w-full aspect-[4/5] rounded-[40px] bg-gradient-to-b from-[#2a2c31] to-[#0C0C0C] border border-[#2a2c31]" />
+                <div className="w-full aspect-[4/5] rounded-[40px] bg-gradient-to-b from-[#2a2c31] to-ink border border-[#2a2c31]" />
               )}
             </Magnet>
           </FadeIn>
@@ -78,7 +78,7 @@ export default function HeroSection({ profile }: Props) {
       <div className="flex justify-between items-end pb-7 sm:pb-8 md:pb-10 px-6 md:px-10">
         <FadeIn delay={0.35} y={20}>
           <p
-            className="text-[#D7E2EA] font-light uppercase tracking-wide leading-snug max-w-[160px] sm:max-w-[220px] md:max-w-[260px]"
+            className="text-mist font-light uppercase tracking-wide leading-snug max-w-[160px] sm:max-w-[220px] md:max-w-[260px]"
             style={{ fontSize: 'clamp(0.75rem, 1.4vw, 1.5rem)' }}
           >
             {tagline}

@@ -20,7 +20,8 @@ body {
 }
 
 .hero-heading {
-  background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+  /* End stop matches the `mist` token in tailwind.config.js/src/lib/theme.ts. */
+  background: linear-gradient(180deg, #646973 0%, #D7E2EA 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
