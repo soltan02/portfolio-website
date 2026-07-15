@@ -66,7 +66,13 @@ export default function HeroSection({ profile }: Props) {
           <FadeIn delay={0.6} y={30}>
             <Magnet padding={150} strength={3} activeTransition="transform 0.3s ease-out" inactiveTransition="transform 0.6s ease-in-out">
               {profile?.avatar_url ? (
-                <img src={profile.avatar_url} alt={profile.full_name} className="w-full h-auto select-none" draggable={false} />
+                <img
+                  src={profile.avatar_url}
+                  alt={profile.full_name}
+                  className="w-full aspect-[4/5] rounded-[40px] border border-mist/10 shadow-2xl select-none"
+                  style={{ objectFit: 'cover', objectPosition: '50% 15%' }}
+                  draggable={false}
+                />
               ) : (
                 <div className="w-full aspect-[4/5] rounded-[40px] bg-gradient-to-b from-[#2a2c31] to-ink border border-[#2a2c31]" />
               )}
