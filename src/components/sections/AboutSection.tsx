@@ -2,7 +2,6 @@ import type { Profile } from '../../lib/supabase';
 import FadeIn from '../FadeIn';
 import AnimatedText from '../AnimatedText';
 import ContactButton from '../ContactButton';
-import DataMotifBackground from '../DataMotifBackground';
 import { ACCENT_CYCLE } from '../../lib/theme';
 
 interface Props {
@@ -13,9 +12,7 @@ export default function AboutSection({ profile }: Props) {
   const bio = profile?.bio || 'Tell me about yourself and this will show up here.';
 
   return (
-    <section id="about" className="relative min-h-screen flex flex-col items-center justify-center px-5 sm:px-8 md:px-10 py-20 overflow-hidden">
-      <DataMotifBackground opacity={0.3} />
-
+    <section id="about" className="relative min-h-screen flex flex-col items-center justify-center px-5 sm:px-8 md:px-10 py-20">
       <div className="flex flex-col items-center gap-10 sm:gap-14 md:gap-16 relative z-10">
         <FadeIn delay={0} y={40}>
           <h2 className="hero-heading font-black uppercase leading-none tracking-tight text-center" style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}>

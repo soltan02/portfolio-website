@@ -48,6 +48,7 @@ export interface Experience {
   organization: string;
   period: string;
   description: string;
+  category: 'education' | 'career';
   display_order: number;
   created_at: string;
 }

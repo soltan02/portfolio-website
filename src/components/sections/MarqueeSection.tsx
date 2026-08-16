@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import type { Project } from '../../lib/supabase';
+import TechLogo from '../TechLogo';
 
 // Self-made gradient placeholder tiles — no third-party hotlinked images.
 const GRADIENTS = [
@@ -33,7 +34,10 @@ function Tile({ gradient, tag, index }: { gradient: string; tag: string; index: 
       style={{ background: gradient }}
       aria-hidden={index > 0}
     >
-      <span className="text-mist/70 font-semibold uppercase tracking-[0.2em] text-sm">{tag}</span>
+      <span className="flex items-center gap-3 text-mist/70">
+        <TechLogo name={tag} className="w-5 h-5 shrink-0 opacity-80" />
+        <span className="font-semibold uppercase tracking-[0.2em] text-sm">{tag}</span>
+      </span>
     </div>
   );
 }

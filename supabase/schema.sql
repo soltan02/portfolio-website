@@ -87,6 +87,7 @@ CREATE TABLE IF NOT EXISTS experience (
   organization TEXT NOT NULL DEFAULT '',
   period TEXT NOT NULL DEFAULT '',
   description TEXT NOT NULL DEFAULT '',
+  category TEXT NOT NULL DEFAULT 'career',
   display_order INT NOT NULL DEFAULT 0,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );

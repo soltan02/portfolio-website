@@ -1,47 +1,40 @@
-import { lazy, Suspense } from 'react';
 import type { Profile } from '../../lib/supabase';
 import FadeIn from '../FadeIn';
 import Magnet from '../Magnet';
 import ContactButton from '../ContactButton';
 
-// Lazy-loaded: the three.js/react-three-fiber chunk is sizeable and purely
-// decorative, so it downloads after the text/photo have already painted
-// instead of delaying first contentful paint.
-const HeroScene = lazy(() => import('../HeroScene'));
+const NAV_LINKS = [
+  { label: 'About', href: '#about' },
+  { label: 'Education', href: '#experience' },
+  { label: 'Career', href: '#experience' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
+];
 
 interface Props {
   profile: Profile | null;
 }
 
-const NAV_LINKS = [
-  { label: 'About', href: '#about' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
-];
-
 export default function HeroSection({ profile }: Props) {
   const firstName = (profile?.full_name || 'Your Name').trim().split(' ')[0];
   const tagline = profile?.tagline || 'a creator driven by crafting striking and unforgettable projects';
 
-  // Long names shouldn't blow past the viewport at a fixed vw size —
-  // scale the ceiling down as the name gets longer, on top of the
-  // already-reduced base size.
-  const nameLength = firstName.length + 6; // + "Hi, i'm " roughly
+  const nameLength = firstName.length + 6;
   const headingMaxRem = Math.max(3.5, 7.5 - nameLength * 0.12);
 
   return (
-    <section className="relative isolate h-screen flex flex-col" style={{ overflowX: 'clip' }}>
-      <div className="absolute inset-0 -z-10">
-        <Suspense fallback={null}>
-          <HeroScene />
-        </Suspense>
-      </div>
+    <section className="relative isolate min-h-screen flex flex-col" style={{ overflowX: 'clip' }}>
+      {/* Static cinematic backdrop — no WebGL, keeps the page light & fast */}
+      <div
+        className="absolute inset-0 -z-10"
+        style={{ background: 'radial-gradient(120% 80% at 50% 0%, #1a0b22 0%, #0C0C0C 60%)' }}
+        aria-hidden="true"
+      />
 
-      <FadeIn delay={0} y={-20} as="nav" className="flex justify-between px-6 md:px-10 pt-6 md:pt-8">
+      <FadeIn delay={0} y={-20} as="nav" className="flex flex-wrap justify-center gap-x-8 gap-y-2 px-6 md:px-10 pt-6 md:pt-8">
         {NAV_LINKS.map((link) => (
           <a
-            key={link.href}
+            key={link.href + link.label}
             href={link.href}
             className="text-mist font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] transition-opacity duration-200 hover:opacity-70"
           >

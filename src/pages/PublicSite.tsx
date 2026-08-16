@@ -43,19 +43,22 @@ export default function PublicSite() {
   if (loading) {
     return (
       <div className="min-h-screen bg-ink flex items-center justify-center text-mist/60">
-        Chargement…
+        Loading…
       </div>
     );
   }
 
   const socialEntries = Object.entries(profile?.social_links || {}).filter(([, url]) => url);
 
+  const education = experience.filter((e) => (e.category || 'career') === 'education');
+  const career = experience.filter((e) => (e.category || 'career') === 'career');
+
   return (
     <div className="bg-ink" style={{ overflowX: 'clip' }}>
       <HeroSection profile={profile} />
       <MarqueeSection projects={projects} />
       <AboutSection profile={profile} />
-      <ExperienceSection experience={experience} />
+      <ExperienceSection education={education} career={career} />
       <ServicesSection services={services} />
       <ProjectsSection projects={projects} />
 
